@@ -67,6 +67,29 @@ try{
 let res=await fetch("/data");
 let data=await res.json();
 
+const statusBadge = document.getElementById("deviceStatus");
+
+if (data.success === false) {
+  if (statusBadge) {
+    statusBadge.innerText = "🔴 Offline";
+    statusBadge.className = "status-badge status-offline";
+  }
+  
+  const tempEl = document.getElementById("temp");
+  const soilEl = document.getElementById("soil");
+  const distEl = document.getElementById("dist");
+  
+  if (tempEl && (tempEl.innerText === "" || tempEl.innerText === "undefined")) tempEl.innerText = "--";
+  if (soilEl && (soilEl.innerText === "" || soilEl.innerText === "undefined")) soilEl.innerText = "--";
+  if (distEl && (distEl.innerText === "" || distEl.innerText === "undefined")) distEl.innerText = "--";
+  
+  return;
+}
+
+if (statusBadge) {
+  statusBadge.innerText = "🟢 Online";
+  statusBadge.className = "status-badge status-online";
+}
 
 // ================= AUTO MODE LOGIC =================
 
