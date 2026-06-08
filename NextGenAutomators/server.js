@@ -15,7 +15,7 @@ app.use(express.static("public"));
 
 // ================= MONGODB CONNECTION =================
 mongoose.connect(
-  process.env.MONGODB_URI || "mongodb://127.0.0.1:27017/iotDB"
+  process.env.MONGODB_URI || "mongodb+srv://rajat:rajat1234@cluster0.9vefajq.mongodb.net/iotDB?retryWrites=true&w=majority"
 )
 
 .then(() => {
