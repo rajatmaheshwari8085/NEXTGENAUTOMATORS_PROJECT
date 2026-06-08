@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>IoT Dashboard</title>
+<link rel="stylesheet" href="style.css">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</head>
+
+<body>
+<!-- ================= LOGIN SCREEN ================= -->
+<div id="loginPage" class="login-page">
+
+  <div class="login-box">
+
+    <h2>NextGenAutomators Login</h2>
+
+    <input type="text" id="username" placeholder="Enter ID">
+
+    <input type="password" id="password" placeholder="Enter Password">
+
+    <button onclick="login()">Login</button>
+
+    <p id="loginMsg"></p>
+
+ 
+
+  </div>
+
+</div>
+<!-- TOP BAR -->
+<div class="topbar">
+
+  <div class="top-left">
+    
+    <span class="menu-btn" onclick="toggleSidebar()">
+      ☰
+    </span>
+
+    <span class="title">
+      NextGenAutomators
+    </span>
+
+  </div>
+
+  <div class="top-right">
+
+    <!-- USER BADGE -->
+    <div class="user-badge">
+
+      <div class="profile-icon">
+        👤
+      </div>
+
+      <div class="user-details">
+        <span class="role-label">
+          Logged in as
+        </span>
+
+        <span id="currentRoleText" class="role-name">
+          GUEST
+        </span>
+      </div>
+
+    </div>
+<button id="darkModeBtn" onclick="toggleDarkMode()">
+
+<span id="themeIcon">🌙</span>
+
+<span id="themeText">
+Dark
+</span>
+
+</button>
+
+    <!-- LOGOUT -->
+    <button id="logoutBtn" onclick="logout()">
+      Logout
+    </button>
+
+  </div>
+
+</div>
+
+<!-- SIDEBAR -->
+<div id="sidebar" class="sidebar">
+<a onclick="showSection('dashboard')">Dashboard</a>
+<a onclick="showSection('about')">About Project</a>
+<a onclick="showSection('team')">Team</a>
+<a onclick="showSection('contact')">Contact</a>
+</div>
+
+
+<!-- ================= MAIN CONTENT ================= -->
+<div id="mainContent" style="display:none;">
+
+<!-- ================= DASHBOARD ================= -->
+<div id="dashboard" class="section active">
+
+<h1>NextGenAutomators Intelligent Control System</h1>
+
+<div class="container">
+
+<div class="card temp">
+<h3>Temperature</h3>
+<p><span id="temp">--</span>°C</p>
+</div>
+
+<div class="card soil">
+<h3>Soil</h3>
+<p><span id="soil">--</span>%</p>
+</div>
+
+<div class="card dist">
+<h3>Distance</h3>
+<p><span id="dist">--</span>cm</p>
+</div>
+
+</div>
+
+
+<div class="device-container">
+
+<div class="card pump control-card">
+<h3>Water Pump</h3>
+<p>Status: <b id="pumpStatus">OFF</b></p>
+
+<button onclick="controlDevice('pump','ON')">ON</button>
+<button onclick="controlDevice('pump','OFF')">OFF</button>
+<button onclick="controlDevice('pump','AUTO')">AUTO</button>
+</div>
+
+
+<div class="card fan control-card">
+<h3>Cooling Fan</h3>
+<p>Status: <b id="fanStatus">OFF</b></p>
+
+<button onclick="controlDevice('fan','ON')">ON</button>
+<button onclick="controlDevice('fan','OFF')">OFF</button>
+<button onclick="controlDevice('fan','AUTO')">AUTO</button>
+</div>
+
+</div>
+
+
+<div class="graph-container">
+
+<div class="graph-card">
+<h3>Temperature Trend</h3>
+<canvas id="tempChart"></canvas>
+</div>
+
+<div class="graph-card">
+<h3>Moisture Trend</h3>
+<canvas id="soilChart"></canvas>
+</div>
+
+</div>
+
+<div class="alert-box">
+  <h2>System Alerts</h2>
+  <ul id="alerts" class="alert-list">
+    <li>No Alerts</li>
+  </ul>
+</div>
+
+
+ 
+
+</div> <!-- dashboard close -->
+
+
+<!-- ================= ABOUT ================= -->
+<div id="about" class="section">
+
+<h2>About Project</h2>
+
+  <p>
+    Welcome to our project <strong>Smart Multi-Utility IoT Automation & Monitoring System</strong>, 
+    an innovative solution designed to make everyday environments smarter, safer, and more efficient 
+    using Internet of Things (IoT) technology.
+  </p>
+
+  <p>
+    This system integrates multiple sensors and automation mechanisms to monitor and control different 
+    real-world conditions in real time. Our goal is to reduce manual effort, improve resource utilization, 
+    and provide a user-friendly interface for seamless monitoring and control.
+  </p>
+
+  <h3>Project Components</h3>
+  <ul style="list-style: none; padding-left: 0; margin-left: 0;">
+    <li><strong>Soil Moisture Sensor</strong> – Detects soil conditions and automates irrigation systems</li>
+    <li><strong>Ultrasonic Sensor (HC-SR04)</strong> – Identifies animal movement and enhances field security</li>
+    <li><strong>DHT Sensor</strong> – Monitors temperature and humidity, enabling automatic control of devices like cooling fans</li>
+    <li><strong>Web-based Dashboard</strong> – Displays live data and allows users to control appliances remotely</li>
+  </ul>
+
+  <h3>Key Features</h3>
+  <ul style="list-style: none; padding-left: 0; margin-left: 0;">
+    <li>Real-time data monitoring</li>
+    <li>Automation and smart decision-making</li>
+    <li>Energy efficiency and resource optimization</li>
+    <li>User-friendly interface for easy access and control</li>
+  </ul>
+
+  <p>
+    This project has been developed by a team of engineering students passionate about IoT and embedded systems. 
+    It reflects our commitment to solving real-world problems using technology and innovation.
+  </p>
+
+  <p>
+    We aim to further enhance this system by integrating advanced analytics, cloud storage, and AI-based 
+    decision-making in the future.
+  </p>
+
+  <h3>Our Mission</h3>
+  <p>
+    To develop smart, efficient, and scalable IoT solutions that simplify daily life and improve productivity 
+    in agriculture and home automation.
+  </p>
+
+  <h3>Our Vision</h3>
+  <p>
+    To contribute towards a smarter and connected world by leveraging the power of IoT and automation technologies.
+  </p>
+</div>
+
+
+<!-- ================= TEAM ================= -->
+<div id="team" class="section">
+
+  <h2>Team Members</h2>
+
+  <div class="team-container">
+
+    <div class="team-card">
+      <img src="images/rajat.jpg" alt="Rajat">
+      <h3>Rajat Maheshwari</h3>
+      <p>Backend Developer</p>
+    </div>
+
+    <div class="team-card">
+      <img src="images/vanshika.jpg" alt="Vanshika">
+      <h3>Vanshika Mishra</h3>
+      <p>Frontend Developer</p>
+    </div>
+
+    <div class="team-card">
+      <img src="images/pushpraj.jpg" alt="Pushpraj">
+      <h3>Pushpraj Patel</h3>
+      <p>Hardware Engineer</p>
+    </div>
+
+  </div>
+
+</div>
+
+
+<!-- ================= CONTACT ================= -->
+<div id="contact" class="section">
+
+<h2>Contact Us</h2>
+
+<p>Email: nextgenautomators@gmail.com</p>
+<p>Phone: 9876543210</p>
+
+</div>
+
+</div> <!-- ✅ mainContent CLOSE (IMPORTANT) -->
+
+<!-- ================= NOTIFICATION ================= -->
+
+<div id="notification" class="notification">
+  Notification
+</div>
+<script src="script.js"></script>
+
+</body>
+</html>

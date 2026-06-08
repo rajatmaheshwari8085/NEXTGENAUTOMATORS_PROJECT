@@ -1,0 +1,923 @@
+body{
+font-family:Segoe UI,sans-serif;
+text-align:center;
+margin:0;
+background:linear-gradient(135deg,#e0f2fe,#f0fdf4);
+}
+
+/* ================= TITLE ================= */
+h1{
+width:85%;
+margin:30px auto;
+padding:22px 30px;
+
+font-size:34px;
+font-weight:700;
+letter-spacing:1px;
+
+color:#0f172a;
+
+background:linear-gradient(135deg,#38bdf8,#6366f1,#a855f7);
+
+border:3px solid #ffffff;
+border-radius:18px;
+
+box-shadow:0 8px 20px rgba(0,0,0,.15);
+text-transform:uppercase;
+}
+
+/* ================= SENSOR CARDS ================= */
+.container{
+display:flex;
+flex-direction:row;
+justify-content:center;
+align-items:center;
+gap:30px;
+flex-wrap:wrap;
+margin-top:30px;
+margin-bottom:40px;
+}
+
+.card{
+padding:20px;
+width:240px;
+min-height:200px;
+border-radius:16px;
+color:white;
+box-shadow:0 6px 18px rgba(0,0,0,.15);
+transition:.3s;
+}
+
+.card:hover{
+transform:translateY(-6px) scale(1.02);
+}
+
+.card h3{
+font-size:20px;
+margin-bottom:15px;
+}
+
+.card p{
+font-size:26px;
+font-weight:bold;
+}
+
+/* Softer gradients */
+.temp{
+background:linear-gradient(135deg,#fb7185,#f43f5e);
+}
+
+.soil{
+background:linear-gradient(135deg,#34d399,#10b981);
+}
+
+.dist{
+background:linear-gradient(135deg,#818cf8,#6366f1);
+}
+
+/* ================= DEVICE CARDS ================= */
+.pump{
+background:linear-gradient(135deg,#38bdf8,#2563eb);
+}
+
+.fan{
+background:linear-gradient(135deg,#facc15,#f59e0b);
+color:#1e293b;
+}
+
+button{
+display:block;
+width:130px;
+margin:10px auto;
+padding:10px;
+
+font-size:15px;
+font-weight:bold;
+
+border:none;
+border-radius:10px;
+cursor:pointer;
+
+transition:.3s;
+box-shadow:0 4px 10px rgba(0,0,0,.15);
+}
+
+/* ON */
+button:first-of-type{
+background:linear-gradient(135deg,#22c55e,#16a34a);
+color:white;
+}
+
+/* OFF */
+button:last-of-type{
+background:linear-gradient(135deg,#ef4444,#dc2626);
+color:white;
+}
+
+/* AUTO */
+button:nth-of-type(2){
+background:linear-gradient(135deg,#38bdf8,#0ea5e9);
+color:white;
+}
+
+button:hover{
+transform:scale(1.05);
+}
+
+/* ================= GRAPH ================= */
+.graph-container{
+display:flex;
+justify-content:center;
+gap:30px;
+flex-wrap:wrap;
+margin-top:50px;
+}
+
+.graph-card{
+width:480px;
+background:white;
+padding:20px;
+border-radius:18px;
+box-shadow:0 6px 18px rgba(0,0,0,.12);
+}
+
+canvas{
+max-height:300px;
+}
+
+/* ================= ALERT ================= */
+.alert-box{
+width:70%;
+margin:40px auto;
+background:#fff7ed;
+padding:20px;
+border-radius:16px;
+box-shadow:0 6px 18px rgba(0,0,0,.12);
+}
+
+.alert-box h2{
+color:#c2410c;
+}
+
+.alert-box li{
+font-size:18px;
+margin:10px;
+font-weight:600;
+}
+
+/* ================= DEVICE CONTAINER ================= */
+.device-container{
+display:flex;
+justify-content:center;
+gap:40px;
+flex-wrap:wrap;
+margin-top:40px;
+margin-bottom:60px;
+}
+
+.pump,
+.fan{
+width:240px;
+min-height:260px;
+}
+
+/* ================= TOPBAR ================= */
+.topbar{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:60px;
+
+background:#1e293b;
+color:white;
+
+display:flex;
+align-items:center;
+padding:0 20px;
+z-index:1000;
+}
+
+.menu-btn{
+font-size:26px;
+cursor:pointer;
+margin-right:20px;
+}
+
+.title{
+font-size:20px;
+font-weight:bold;
+}
+
+/* ================= SIDEBAR ================= */
+.sidebar{
+position:fixed;
+top:60px;
+left:-220px;
+
+width:220px;
+height:100%;
+
+background:linear-gradient(180deg,#0f172a,#1e293b);
+
+transition:0.3s;
+z-index:1000;
+padding-top:20px;
+}
+
+.sidebar a{
+display:block;
+color:white;
+
+padding:14px 20px;
+font-size:17px;
+font-weight:500;
+
+cursor:pointer;
+text-decoration:none;
+
+border-left:4px solid transparent;
+transition:.3s;
+}
+
+.sidebar a:hover{
+background:#1d4ed8;
+border-left:4px solid #38bdf8;
+padding-left:25px;
+}
+
+.sidebar a.active{
+background:#2563eb;
+border-left:4px solid #facc15;
+}
+
+/* ================= SECTIONS ================= */
+.section{
+display:none;
+width:100%;
+min-height:100vh;
+padding:90px 20px;
+box-sizing:border-box;
+}
+
+.section.active{
+display:block;
+}
+
+/* ================= MAIN ================= */
+#mainContent{
+margin-left:0;
+transition:0.3s;
+padding-top:70px;
+}
+
+#mainContent.shift{
+margin-left:220px;
+}
+
+/* ================= TEAM ================= */
+#team{
+text-align:center;
+}
+
+.team-section{
+padding:40px;
+}
+
+.team-container{
+display:flex;
+justify-content:center;
+gap:30px;
+flex-wrap:wrap;
+}
+
+.team-card{
+background:white;
+padding:20px;
+border-radius:16px;
+width:220px;
+box-shadow:0 6px 18px rgba(0,0,0,.15);
+transition:.3s;
+}
+
+.team-card:hover{
+transform:translateY(-8px) scale(1.03);
+}
+
+.team-card img{
+width:100px;
+height:100px;
+border-radius:50%;
+object-fit:cover;
+margin-bottom:12px;
+border:3px solid #38bdf8;
+}
+
+.team-card h3{
+margin:8px 0 4px;
+color:#0f172a;
+}
+
+.team-card p{
+color:#64748b;
+font-size:14px;
+}
+
+/* ================= FINAL SENSOR CARD FIX ================= */
+
+/* Card size auto + compact */
+.container{
+flex-wrap:wrap;
+}
+
+.card{
+width:220px !important;
+min-height:auto !important;
+height:auto !important;
+padding:25px !important;
+
+/* ALL TEXT BLACK */
+color:#0f172a !important;
+}
+
+/* Headings & values black */
+.card h3{
+color:#0f172a !important;
+font-size:20px;
+}
+
+.card p{
+color:#0f172a !important;
+font-size:26px;
+}
+
+/* ================= PROFESSIONAL SOFT COLORS ================= */
+
+/* Temperature */
+.temp{
+background:linear-gradient(135deg,#fecaca,#f87171) !important;
+}
+
+/* Soil */
+.soil{
+background:linear-gradient(135deg,#bbf7d0,#34d399) !important;
+}
+
+/* Distance */
+.dist{
+background:linear-gradient(135deg,#c7d2fe,#818cf8) !important;
+}
+
+/* ================= DEVICE CARDS CONSISTENT ================= */
+
+.pump{
+background:linear-gradient(135deg,#bae6fd,#60a5fa) !important;
+color:#0f172a !important;
+}
+
+.fan{
+background:linear-gradient(135deg,#fde68a,#fbbf24) !important;
+color:#0f172a !important;
+}
+
+/* ================= BETTER SPACING ================= */
+
+.device-container{
+flex-wrap:wrap;
+gap:30px;
+}
+
+/* ================= HOVER POLISH ================= */
+
+.card:hover{
+transform:translateY(-6px) scale(1.03);
+box-shadow:0 10px 25px rgba(0,0,0,.18);
+}
+
+/* Remove dots completely */
+.alert-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Extra safety (browser override) */
+.alert-list li::marker {
+  content: "";
+}
+
+/* Clean spacing */
+.alert-list li {
+  margin: 10px 0;
+  font-size: 18px;
+  font-weight: 600;
+  color: #1e293b;
+}
+.alert-list li::before {
+  content: "⚠ ";
+  color: #f97316;
+  margin-right: 6px;
+}
+
+/* ================= LOGIN PAGE ================= */
+.login-page{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100vh;
+
+background:linear-gradient(135deg,#0f172a,#1e3a8a,#2563eb);
+
+display:flex;
+justify-content:center;
+align-items:center;
+
+z-index:5000;
+}
+
+.login-box{
+width:350px;
+background:white;
+padding:35px;
+border-radius:20px;
+
+box-shadow:0 10px 25px rgba(0,0,0,.25);
+}
+
+.login-box h2{
+margin-bottom:25px;
+color:#0f172a;
+}
+
+.login-box input{
+width:100%;
+padding:14px;
+margin:12px 0;
+
+border:1px solid #cbd5e1;
+border-radius:10px;
+
+font-size:16px;
+box-sizing:border-box;
+}
+
+.login-box button{
+width:100%;
+padding:14px;
+
+background:linear-gradient(135deg,#2563eb,#1d4ed8);
+
+color:white;
+font-size:16px;
+font-weight:bold;
+
+border:none;
+border-radius:10px;
+
+cursor:pointer;
+margin-top:10px;
+}
+/* ================= TOPBAR NEW STYLE ================= */
+
+.topbar{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:65px;
+
+background:linear-gradient(135deg,#0f172a,#1e293b);
+
+display:flex;
+justify-content:space-between;
+align-items:center;
+
+padding:0 25px;
+
+box-sizing:border-box;
+
+z-index:1000;
+
+box-shadow:0 4px 14px rgba(0,0,0,.18);
+}
+
+.top-left{
+display:flex;
+align-items:center;
+gap:18px;
+}
+
+.top-right{
+display:flex;
+align-items:center;
+gap:18px;
+}
+
+/* User role box */
+.user-info{
+background:rgba(255,255,255,.12);
+
+padding:10px 16px;
+
+border-radius:12px;
+
+font-size:15px;
+font-weight:600;
+
+color:white;
+
+backdrop-filter:blur(6px);
+}
+
+/* Logout button */
+#logoutBtn{
+
+padding:10px 18px;
+
+background:linear-gradient(135deg,#ef4444,#dc2626);
+
+color:white;
+
+border:none;
+border-radius:10px;
+
+font-size:14px;
+font-weight:bold;
+
+cursor:pointer;
+
+transition:.3s;
+
+box-shadow:0 4px 10px rgba(0,0,0,.18);
+}
+
+#logoutBtn:hover{
+transform:scale(1.05);
+background:linear-gradient(135deg,#f87171,#ef4444);
+}
+
+
+/* ================= GLASSMORPHISM TOPBAR ================= */
+
+.topbar{
+
+position:fixed;
+
+top:0;
+left:0;
+
+width:100%;
+height:70px;
+
+display:flex;
+justify-content:space-between;
+align-items:center;
+
+padding:0 25px;
+
+box-sizing:border-box;
+
+background:rgba(15,23,42,.65);
+
+backdrop-filter:blur(14px);
+
+border-bottom:1px solid rgba(255,255,255,.15);
+
+z-index:2000;
+
+box-shadow:0 4px 20px rgba(0,0,0,.15);
+}
+
+/* LEFT */
+.top-left{
+display:flex;
+align-items:center;
+gap:18px;
+}
+
+/* RIGHT */
+.top-right{
+display:flex;
+align-items:center;
+gap:18px;
+}
+
+/* MENU */
+.menu-btn{
+
+font-size:28px;
+cursor:pointer;
+
+color:white;
+
+transition:.3s;
+}
+
+.menu-btn:hover{
+transform:scale(1.1);
+}
+
+/* TITLE */
+.title{
+
+font-size:24px;
+font-weight:700;
+
+color:white;
+
+letter-spacing:.5px;
+}
+
+/* ================= USER BADGE ================= */
+
+.user-badge{
+
+display:flex;
+align-items:center;
+gap:12px;
+
+padding:10px 16px;
+
+border-radius:16px;
+
+background:rgba(255,255,255,.12);
+
+backdrop-filter:blur(8px);
+
+border:1px solid rgba(255,255,255,.12);
+}
+
+/* PROFILE ICON */
+
+.profile-icon{
+
+width:42px;
+height:42px;
+
+display:flex;
+justify-content:center;
+align-items:center;
+
+border-radius:50%;
+
+font-size:20px;
+
+background:linear-gradient(
+135deg,
+#38bdf8,
+#6366f1
+);
+
+color:white;
+
+box-shadow:0 4px 12px rgba(0,0,0,.18);
+}
+
+/* USER TEXT */
+
+.user-details{
+display:flex;
+flex-direction:column;
+align-items:flex-start;
+}
+
+.role-label{
+
+font-size:12px;
+color:#cbd5e1;
+}
+
+.role-name{
+
+font-size:15px;
+font-weight:700;
+color:white;
+
+letter-spacing:.5px;
+}
+
+/* ================= LOGOUT BUTTON ================= */
+
+#logoutBtn{
+
+padding:10px 18px;
+
+border:none;
+border-radius:12px;
+
+font-size:14px;
+font-weight:700;
+
+cursor:pointer;
+
+color:white;
+
+background:linear-gradient(
+135deg,
+#ef4444,
+#dc2626
+);
+
+transition:.3s;
+
+box-shadow:0 4px 12px rgba(0,0,0,.18);
+}
+
+#logoutBtn:hover{
+
+transform:translateY(-2px) scale(1.04);
+
+background:linear-gradient(
+135deg,
+#f87171,
+#ef4444
+);
+}
+
+/* ================= LOGIN ANIMATION ================= */
+
+.login-box{
+
+animation:loginPop .7s ease;
+}
+
+@keyframes loginPop{
+
+0%{
+opacity:0;
+transform:scale(.7) translateY(40px);
+}
+
+100%{
+opacity:1;
+transform:scale(1) translateY(0);
+}
+}
+
+/* DASHBOARD FADE */
+
+#mainContent{
+animation:fadeDashboard .8s ease;
+}
+
+@keyframes fadeDashboard{
+
+0%{
+opacity:0;
+transform:translateY(15px);
+}
+
+100%{
+opacity:1;
+transform:translateY(0);
+}
+}
+
+/* ================= NOTIFICATION POPUP ================= */
+
+.notification{
+
+position:fixed;
+
+top:90px;
+right:25px;
+
+background:linear-gradient(
+135deg,
+#22c55e,
+#16a34a
+);
+
+color:white;
+
+padding:16px 22px;
+
+border-radius:14px;
+
+font-size:15px;
+font-weight:600;
+
+box-shadow:0 8px 20px rgba(0,0,0,.18);
+
+z-index:5000;
+
+opacity:0;
+transform:translateX(120px);
+
+transition:.5s;
+}
+
+/* SHOW */
+
+.notification.show{
+
+opacity:1;
+
+transform:translateX(0);
+}
+/* ================= DARK MODE BUTTON ================= */
+
+/* ================= THEME BUTTON ================= */
+
+#darkModeBtn{
+
+display:flex;
+align-items:center;
+gap:8px;
+
+padding:10px 16px;
+
+border:none;
+border-radius:14px;
+
+cursor:pointer;
+
+font-size:15px;
+font-weight:600;
+
+background:rgba(255,255,255,.12);
+
+color:white;
+
+backdrop-filter:blur(6px);
+
+transition:.3s;
+}
+
+#darkModeBtn:hover{
+
+transform:translateY(-2px) scale(1.04);
+
+background:rgba(255,255,255,.2);
+}
+
+#themeIcon{
+font-size:18px;
+}
+
+#themeText{
+font-size:14px;
+letter-spacing:.5px;
+}
+/* ================= DARK MODE ================= */
+
+.dark-mode{
+
+background:linear-gradient(
+135deg,
+#020617,
+#0f172a
+);
+}
+
+/* Cards */
+
+.dark-mode .card,
+.dark-mode .graph-card,
+.dark-mode .alert-box,
+.dark-mode .team-card{
+
+background:#1e293b !important;
+
+color:white !important;
+}
+
+/* Text */
+
+.dark-mode h1,
+.dark-mode h2,
+.dark-mode h3,
+.dark-mode p,
+.dark-mode li{
+
+color:white !important;
+}
+
+/* Graphs */
+
+.dark-mode canvas{
+
+background:#0f172a;
+
+border-radius:12px;
+}
+
+.login-box h2{
+
+font-size:34px;
+font-weight:700;
+
+background:linear-gradient(
+135deg,
+#2563eb,
+#38bdf8
+);
+
+background-clip:text;
+-webkit-background-clip:text;
+
+-webkit-text-fill-color:transparent;
+
+margin-bottom:25px;
+}
