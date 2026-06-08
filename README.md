@@ -4,9 +4,7 @@ Smart Multi-Utility IoT Automation & Monitoring System.
 
 ## 🚀 Live Dashboard
 You can view the live IoT dashboard here:
-👉 **[Live Dashboard Link](https://rare-results-sip.loca.lt)**
-
-*(Note: To bypass the localtunnel warning page, enter the IP shown on the page and click **Continue**)*
+👉 **[Live Dashboard Link](https://593cdc09287a57.lhr.life)**
 
 ---
 
