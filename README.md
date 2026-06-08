@@ -4,7 +4,7 @@ Smart Multi-Utility IoT Automation & Monitoring System.
 
 ## 🚀 Live Dashboard
 You can view the live IoT dashboard here:
-👉 **[Live Dashboard Link](https://593cdc09287a57.lhr.life)**
+👉 **[Live Dashboard Link](https://6dc086bad2aa61.lhr.life)**
 
 ---
 
